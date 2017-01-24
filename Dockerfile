@@ -1,12 +1,12 @@
 FROM sameersbn/ubuntu:14.04.20161014
 MAINTAINER sameer@damagehead.com
 
-ENV WOWZA_VERSION=4.3.0 \
+ENV WOWZA_VERSION=4.6.0 \
     WOWZA_DATA_DIR=/var/lib/wowza \
     WOWZA_LOG_DIR=/var/log/wowza
 
 RUN apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y wget supervisor openjdk-7-jre expect \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y wget supervisor openjdk-7-jre expect curl \
  && rm -rf /var/lib/apt/lists/*
 
 COPY prepare.sh interaction.exp /app/
