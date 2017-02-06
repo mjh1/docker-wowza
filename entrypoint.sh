@@ -67,6 +67,9 @@ rewire_wowza() {
 
   rm -rf /usr/local/WowzaStreamingEngine/lib
   ln -sf ${WOWZA_DATA_DIR}/lib /usr/local/WowzaStreamingEngine/lib
+
+  rm -rf /usr/local/WowzaStreamingEngine/bin
+  ln -sf ${WOWZA_DATA_DIR}/bin /usr/local/WowzaStreamingEngine/bin
 }
 
 initialize_data_dir() {
@@ -85,6 +88,7 @@ initialize_data_dir() {
     [[ ! -d ${WOWZA_DATA_DIR}/applications ]] && cp -a /usr/local/WowzaStreamingEngine/applications ${WOWZA_DATA_DIR}/applications
     [[ ! -d ${WOWZA_DATA_DIR}/stats ]]        && mkdir -p ${WOWZA_DATA_DIR}/stats
     [[ ! -d ${WOWZA_DATA_DIR}/lib ]]          && cp -a /usr/local/WowzaStreamingEngine/lib ${WOWZA_DATA_DIR}/lib
+    [[ ! -d ${WOWZA_DATA_DIR}/bin ]]          && cp -a /usr/local/WowzaStreamingEngine/bin ${WOWZA_DATA_DIR}/bin
     touch ${WOWZA_DATA_DIR}/.firstrun
   fi
 }
