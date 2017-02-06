@@ -8,5 +8,8 @@
 	```
 	2017-01-24 11:48:18,158 INFO success: wowzamgr entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 	```
-4. You should now be able to access the web interface at `http://localhost:8088/` with admin/admin credentials.
-5. And you should be able to stream to `rtmp://localhost:1935/live`.
+
+After following these steps you should be able to:
+- Access the web interface at `http://localhost:8088/` with admin/admin credentials.
+- Stream to `rtmp://localhost:1935/live`.
+- Attach a remote Java debugger from an IDE to localhost:1044.
