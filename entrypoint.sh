@@ -40,6 +40,8 @@ check_and_install_wowza() {
   # symlink /usr/local/WowzaStreamingEngine/manager/logs -> ${WOWZA_LOG_DIR}/manager
   rm -rf /usr/local/WowzaStreamingEngine/manager/logs
   ln -sf ${WOWZA_LOG_DIR}/manager /usr/local/WowzaStreamingEngine/manager/logs
+
+  alive_adjust_config
 }
 
 rewire_wowza() {
@@ -111,14 +113,13 @@ alive_adjust_config() {
   # disable input stream authentication
   sed -i '/<Name>securityPublishRequirePassword<\/Name>/!b;n;c<Value>false</Value>' /usr/local/WowzaStreamingEngine/conf/live/Application.xml
   # modify jvm args to enable remote debugging
-  sed -i 's/com\.wowza\.wms\.bootstrap\.Bootstrap start/-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1044 com.wowza.wms.bootstrap.Bootstrap start/' /usr/local/WowzaStreamingEngine/bin/startup.sh
+  sed -i 's/com\.wowza\.wms\.bootstrap\.Bootstrap start$/-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1044 com.wowza.wms.bootstrap.Bootstrap start/' /usr/local/WowzaStreamingEngine/bin/startup.sh
 }
 
 check_and_install_wowza
 initialize_data_dir
 initialize_log_dir
 rewire_wowza
-alive_adjust_config
 
 if [[ -z ${1} ]]; then
   exec /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
