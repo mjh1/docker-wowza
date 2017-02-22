@@ -25,3 +25,5 @@ Next steps:
 	```
 - Max H has made an ant script which builds the alive-wowza-modules project, copies the jar to the docker location and restarts the container (making development relatively seamless), this hasn't been committed to git because we should be moving to maven soon.
 
+For details about how to set up an IDE and get java debugging working please refer to the alive-wowza-modules readme.
+
